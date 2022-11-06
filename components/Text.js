@@ -1,5 +1,5 @@
 import React from "react";import {useState} from "react";
-import Todo1 from "./Todo1";
+
 
 const Text = () => {
   let count = 0;
@@ -66,7 +66,7 @@ const Text = () => {
           Add
         </button>
       </div>
-      if count === 1 return (<Todo1 text={text} category={category} />
+      <Todo1 text= {text} category={category}/>
       );
     </div>
   );
