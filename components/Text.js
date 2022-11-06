@@ -10,7 +10,6 @@ const Text = () => {
     setCategory(category);
     count = count + 1;
   };
-
   return (
     <div>
       <div
