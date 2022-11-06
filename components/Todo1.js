@@ -27,7 +27,7 @@ const Todo1 = ({text, category}) => {
                   fontSize: 25,
                   fontWeight: 600,
                   marginLeft: 10,
-                }}>
+                }}> 
                 {keys + 1}.{element.text}
               </span>
               <p
