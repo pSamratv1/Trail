@@ -1,9 +1,9 @@
 import React from "react";
 import {useState} from "react";
 
-const Todo1 = ({text, category}) => {
+const Todo1 = ({ItemList}) => {
   let complete = false;
-  const [ItemList, setItemList] = useState([{text, category, complete}]);
+  const [ItemList, setItemList] = useState([ItemList]);
 
   return (
     <>
