@@ -1,20 +1,19 @@
-import React from "react";
-import {useState} from "react";
-
-const Todo1 = ({ItemList}) => {
-  let complete = false;
-  const [ItemList, setItemList] = useState([ItemList]);
-
+import {React, useState} from "react";
+const Todo1 = (props) => {
+  ////passed array of objects as a props and iterate over it to visualize
   return (
     <>
       <div className='todo-items'>
-        {ItemList.map((element, keys) => {
+        {/* using map function to map the props array and destucturing  that array into index and element on that index */}
+        {props.List.map((element, keys) => {
           return (
             <div
               className='todo-individual-list'
               style={{
                 display: "flexbox",
                 marginTop: 10,
+                marginLeft: 470,
+                width: 450,
                 border: "1px solid green",
                 borderRadius: 20,
                 backgroundColor: "#cdbc1d",
@@ -27,8 +26,8 @@ const Todo1 = ({ItemList}) => {
                   fontSize: 25,
                   fontWeight: 600,
                   marginLeft: 10,
-                }}> 
-                {keys + 1}.{element.text}
+                }}>
+                {keys + 1}.{element.texts}
               </span>
               <p
                 className='category-text'
@@ -38,7 +37,7 @@ const Todo1 = ({ItemList}) => {
                   fontWeight: 500,
                 }}>
                 Category:-<span> </span>
-                {element.category}
+                {element.categories}
               </p>
               <input
                 name='checkbox'
@@ -50,13 +49,14 @@ const Todo1 = ({ItemList}) => {
                   marginLeft: 300,
                 }}
                 onChange={() => {
+                  ////this logic needs to be changed
                   const changeHandler = (id) => {
-                    const afterChangedList = ItemList.filter(
+                    const afterChangedList = props.List.filter(
                       (element, keys) => {
                         if (keys === id) {
                           return (element.complete = !element.complete);
                         }
-                        return setItemList(afterChangedList);
+                        return afterChangedList;
                       }
                     );
                   };
@@ -74,17 +74,8 @@ const Todo1 = ({ItemList}) => {
                   paddingLeft: 10,
                   paddingRight: 10,
                 }}
-                onClick={() => {
-                  const deleteItem = (id) => {
-                    const afterDeletedList = ItemList.filter(
-                      (element, keys) => {
-                        return keys !== id;
-                      }
-                    );
-                    afterDeletedList();
-                  };
-                  deleteItem(keys);
-                }}>
+                // Delete logic needs to be resetteled
+                onClick={console.log("Delete")}>
                 Delete
               </button>
             </div>
