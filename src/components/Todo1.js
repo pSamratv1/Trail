@@ -1,4 +1,5 @@
-import React, {useEffect} from "react";import {useState} from "react";
+import React, {useEffect} from "react";
+import {useState} from "react";
 
 const Todo1 = (items) => {
   const [itemsList, setItemList] = useState([]);
@@ -83,9 +84,6 @@ const Todo1 = (items) => {
                 }}
                 onClick={(e) => {
                   const newItems = itemsList?.filter((item) => {
-                    console.log("itemid:", typeof item.id);
-                    console.log("e.target.id:", typeof e.target.id);
-
                     return item.id != e.target.id;
                   });
                   console.log("newItems:", {newItems});
