@@ -82,7 +82,7 @@ const Todo1 = (items) => {
                 }}
                 onClick={(e) => {
                   console.log(e.target.id)
-                  const newItems = itemsList?.items?.filter((item,index)=>{
+                  const newItems = itemsList?.items?.filter((item)=>{
                     return item.id !== e.target.id
                   })
                   setItemList(newItems)
