@@ -7,7 +7,6 @@ const Todo1 = (items) => {
   useEffect(() => {
     setItemList(items)
   }, [items])
-  console.log({items})
 
   return (
     <>

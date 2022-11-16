@@ -9,8 +9,10 @@ const Text = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setItemList((prev)=>[...prev,{ id: Math.floor(Math.random() * 100) + 1,
-                                text:text,
-                                category:category}])
+      text:text,
+      category:category}])
+    setText("")
+    setCategory("")
   };
 
   return (
@@ -23,6 +25,7 @@ const Text = () => {
             height: 200,
             marginLeft: 500,
           }}>
+          <form onSubmit={handleSubmit}>
           <div
             className='todo-input-text'
             style={{
@@ -31,6 +34,7 @@ const Text = () => {
             }}>
             <input
               type='text'
+              required
               style={{
                 height: 30,
                 marginLeft: 120,
@@ -44,6 +48,7 @@ const Text = () => {
             />
             <input
               type='text'
+              required
               style={{
                 marginTop: 5,
                 height: 30,
@@ -56,8 +61,8 @@ const Text = () => {
               }}
             />
           </div>
-
           <button
+            type="submit"
             className='btn'
             style={{
               backgroundColor: "#008CBA",
@@ -69,9 +74,10 @@ const Text = () => {
               paddingRight: 10,
               borderRadius: 10,
             }}
-            onClick={handleSubmit}>
+            >
             Add
           </button>
+          </form>
         </div>
       </div>
       <Todo1 items={ItemList} />
