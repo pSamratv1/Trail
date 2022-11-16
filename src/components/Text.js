@@ -8,8 +8,11 @@ const Text = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setItemList((prev)=>[...prev,{text:text,category:category}])
+    setItemList((prev)=>[...prev,{ id: Math.floor(Math.random() * 100) + 1,
+                                text:text,
+                                category:category}])
   };
+
   return (
     <>
       <div>

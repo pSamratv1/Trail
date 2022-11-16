@@ -1,10 +1,13 @@
-import React from "react";
+import React,{useEffect} from "react";
 import {useState} from "react";
 
 const Todo1 = (items) => {
-  let complete = false;
   const [itemsList, setItemList] = useState(items);
-  console.log({itemsList})
+
+  useEffect(() => {
+    setItemList(items)
+  }, [items])
+  console.log({items})
 
   return (
     <>
@@ -12,6 +15,7 @@ const Todo1 = (items) => {
         {itemsList?.items?.map((element, keys) => {
           return (
             <div
+              key={element.id}
               className='todo-individual-list'
               style={{
                 display: "flexbox",
@@ -22,7 +26,7 @@ const Todo1 = (items) => {
                 color: "#0e1aed",
                 fontSize: 15,
               }}
-              key={keys}>
+              >
               <span
                 style={{
                   fontSize: 25,
@@ -66,6 +70,7 @@ const Todo1 = (items) => {
               />
               Completed
               <button
+                id={element.id}
                 className='btn btn-danger'
                 style={{
                   backgroundColor: "#f44336",
@@ -75,16 +80,12 @@ const Todo1 = (items) => {
                   paddingLeft: 10,
                   paddingRight: 10,
                 }}
-                onClick={() => {
-                  const deleteItem = (id) => {
-                    const afterDeletedList = itemsList?.items?.filter(
-                      (element, keys) => {
-                        return keys !== id;
-                      }
-                    );
-                    afterDeletedList();
-                  };
-                  deleteItem(keys);
+                onClick={(e) => {
+                  console.log(e.target.id)
+                  const newItems = itemsList?.items?.filter((item,index)=>{
+                    return item.id !== e.target.id
+                  })
+                  setItemList(newItems)
                 }}>
                 Delete
               </button>
