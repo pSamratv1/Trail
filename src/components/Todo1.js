@@ -1,19 +1,20 @@
 import React, {useEffect} from "react";import {useState} from "react";
 
 const Todo1 = (items) => {
-  const [itemsList, setItemList] = useState(items);
+  const [itemsList, setItemList] = useState([]);
 
   useEffect(() => {
-    setItemList(items);
+    setItemList(items.items);
   }, [items]);
+  console.log("item", items.items);
 
   return (
     <>
       <div className='todo-items'>
-        {itemsList?.items?.map((element, keys) => {
+        {itemsList?.map((element, keys) => {
           return (
             <div
-              key={element.id}
+              key={keys}
               className='todo-individual-list'
               style={{
                 display: "flexbox",
@@ -32,7 +33,7 @@ const Todo1 = (items) => {
                   fontWeight: 600,
                   marginLeft: 10,
                 }}>
-                {keys + 1}.{element.texts}
+                {keys + 1}. {element.text}
               </span>
               <p
                 className='category-text'
@@ -42,7 +43,7 @@ const Todo1 = (items) => {
                   fontWeight: 500,
                 }}>
                 Category:-<span> </span>
-                {element.categories}
+                {element.category}
               </p>
               <input
                 name='checkbox'
@@ -53,7 +54,7 @@ const Todo1 = (items) => {
                   height: 15,
                   marginLeft: 300,
                 }}
-                onChange={() => {
+                onChange={(e) => {
                   ////this logic needs to be changed
                   const changeHandler = (id) => {
                     const afterChangedList = itemsList?.items?.filter(
@@ -81,10 +82,13 @@ const Todo1 = (items) => {
                   paddingRight: 10,
                 }}
                 onClick={(e) => {
-                  console.log(e.target.id);
-                  const newItems = itemsList?.items?.filter((item) => {
-                    return item.id !== e.target.id;
+                  const newItems = itemsList?.filter((item) => {
+                    console.log("itemid:", typeof item.id);
+                    console.log("e.target.id:", typeof e.target.id);
+
+                    return item.id != e.target.id;
                   });
+                  console.log("newItems:", {newItems});
                   setItemList(newItems);
                 }}>
                 Delete
