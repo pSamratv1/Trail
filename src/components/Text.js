@@ -8,11 +8,8 @@ const Text = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setItemList([...ItemList, {category, text}]);
-    setText("");
-    setCategory("");
+    setItemList((prev)=>[...prev,{text:text,category:category}])
   };
-
   return (
     <>
       <div>
@@ -74,7 +71,7 @@ const Text = () => {
           </button>
         </div>
       </div>
-      {/* <Todo1 list={ItemList} /> */}
+      <Todo1 items={ItemList} />
     </>
   );
 };

@@ -1,14 +1,15 @@
 import React from "react";
 import {useState} from "react";
 
-const Todo1 = ({ItemList}) => {
+const Todo1 = (items) => {
   let complete = false;
-  const [ItemList, setItemList] = useState([ItemList]);
+  const [itemsList, setItemList] = useState(items);
+  console.log({itemsList})
 
   return (
     <>
       <div className='todo-items'>
-        {ItemList.map((element, keys) => {
+        {itemsList?.items?.map((element, keys) => {
           return (
             <div
               className='todo-individual-list'
@@ -51,7 +52,7 @@ const Todo1 = ({ItemList}) => {
                 }}
                 onChange={() => {
                   const changeHandler = (id) => {
-                    const afterChangedList = ItemList.filter(
+                    const afterChangedList = itemsList?.items?.filter(
                       (element, keys) => {
                         if (keys === id) {
                           return (element.complete = !element.complete);
@@ -76,7 +77,7 @@ const Todo1 = ({ItemList}) => {
                 }}
                 onClick={() => {
                   const deleteItem = (id) => {
-                    const afterDeletedList = ItemList.filter(
+                    const afterDeletedList = itemsList?.items?.filter(
                       (element, keys) => {
                         return keys !== id;
                       }
