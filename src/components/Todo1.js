@@ -19,6 +19,8 @@ const Todo1 = (items) => {
               style={{
                 display: "flexbox",
                 marginTop: 10,
+                marginLeft: 470,
+                width: 450,
                 border: "1px solid green",
                 borderRadius: 20,
                 backgroundColor: "#cdbc1d",
@@ -31,8 +33,8 @@ const Todo1 = (items) => {
                   fontSize: 25,
                   fontWeight: 600,
                   marginLeft: 10,
-                }}> 
-                {keys + 1}.{element.text}
+                }}>
+                {keys + 1}.{element.texts}
               </span>
               <p
                 className='category-text'
@@ -42,7 +44,7 @@ const Todo1 = (items) => {
                   fontWeight: 500,
                 }}>
                 Category:-<span> </span>
-                {element.category}
+                {element.categories}
               </p>
               <input
                 name='checkbox'
@@ -54,13 +56,14 @@ const Todo1 = (items) => {
                   marginLeft: 300,
                 }}
                 onChange={() => {
+                  ////this logic needs to be changed
                   const changeHandler = (id) => {
                     const afterChangedList = itemsList?.items?.filter(
                       (element, keys) => {
                         if (keys === id) {
                           return (element.complete = !element.complete);
                         }
-                        return setItemList(afterChangedList);
+                        return afterChangedList;
                       }
                     );
                   };

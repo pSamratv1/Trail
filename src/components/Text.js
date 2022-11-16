@@ -1,11 +1,14 @@
-import React from "react";import {useState} from "react";
+import React from "react";
+import {useState} from "react";
 import Todo1 from "./Todo1";
 
 const Text = () => {
+  ////Three state : text stores text inputs and category hold categories and finally ItemList hold both of text and category in it.
   const [text, setText] = useState("");
   const [category, setCategory] = useState("");
   const [ItemList, setItemList] = useState([]);
 
+  ///onclick function for submit
   const handleSubmit = (e) => {
     e.preventDefault();
     setItemList((prev)=>[...prev,{ id: Math.floor(Math.random() * 100) + 1,
@@ -17,6 +20,7 @@ const Text = () => {
 
   return (
     <>
+    {/* Now rendering the UI */}
       <div>
         <div
           className='todo-body'
@@ -43,6 +47,7 @@ const Text = () => {
               placeholder='Add your Todo here....'
               value={text}
               onChange={(e) => {
+                ///during change in text feild that needs to be registered in text state
                 setText(e.target.value);
               }}
             />
@@ -57,6 +62,7 @@ const Text = () => {
               placeholder='Add your Category here....'
               value={category}
               onChange={(e) => {
+                ///during change in category feild that needs to be registered in category state
                 setCategory(e.target.value);
               }}
             />
