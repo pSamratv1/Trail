@@ -1,13 +1,19 @@
-import {React, useState} from "react";
-const Todo1 = (props) => {
-  ////passed array of objects as a props and iterate over it to visualize
+import React, {useEffect} from "react";import {useState} from "react";
+
+const Todo1 = (items) => {
+  const [itemsList, setItemList] = useState(items);
+
+  useEffect(() => {
+    setItemList(items);
+  }, [items]);
+
   return (
     <>
       <div className='todo-items'>
-        {/* using map function to map the props array and destucturing  that array into index and element on that index */}
-        {props.List.map((element, keys) => {
+        {itemsList?.items?.map((element, keys) => {
           return (
             <div
+              key={element.id}
               className='todo-individual-list'
               style={{
                 display: "flexbox",
@@ -19,8 +25,7 @@ const Todo1 = (props) => {
                 backgroundColor: "#cdbc1d",
                 color: "#0e1aed",
                 fontSize: 15,
-              }}
-              key={keys}>
+              }}>
               <span
                 style={{
                   fontSize: 25,
@@ -51,7 +56,7 @@ const Todo1 = (props) => {
                 onChange={() => {
                   ////this logic needs to be changed
                   const changeHandler = (id) => {
-                    const afterChangedList = props.List.filter(
+                    const afterChangedList = itemsList?.items?.filter(
                       (element, keys) => {
                         if (keys === id) {
                           return (element.complete = !element.complete);
@@ -65,6 +70,7 @@ const Todo1 = (props) => {
               />
               Completed
               <button
+                id={element.id}
                 className='btn btn-danger'
                 style={{
                   backgroundColor: "#f44336",
@@ -74,8 +80,13 @@ const Todo1 = (props) => {
                   paddingLeft: 10,
                   paddingRight: 10,
                 }}
-                // Delete logic needs to be resetteled
-                onClick={console.log("Delete")}>
+                onClick={(e) => {
+                  console.log(e.target.id);
+                  const newItems = itemsList?.items?.filter((item) => {
+                    return item.id !== e.target.id;
+                  });
+                  setItemList(newItems);
+                }}>
                 Delete
               </button>
             </div>

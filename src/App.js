@@ -11,7 +11,7 @@ function App() {
       <div
         className='todo-head'
         style={{
-          height: 1000,
+          height: "100vh",
         }}>
         <h1
           className='todo-title'

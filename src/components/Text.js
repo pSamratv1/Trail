@@ -11,16 +11,10 @@ const Text = () => {
   ///onclick function for submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    ///set list with previous value + latest value provided bt states.
-    setItemList([
-      ...ItemList,
-      {
-        texts: text,
-        categories: category,
-        complete: false,
-      },
+    setItemList((prev) => [
+      ...prev,
+      {id: Math.floor(Math.random() * 100) + 1, text: text, category: category},
     ]);
-    ///once add is click text and category feild needs to be reset fro new input.
     setText("");
     setCategory("");
   };
@@ -36,61 +30,63 @@ const Text = () => {
             height: 200,
             marginLeft: 500,
           }}>
-          <div
-            className='todo-input-text'
-            style={{
-              display: "flexbox",
-              justifyContent: "center",
-            }}>
-            <input
-              type='text'
+          <form onSubmit={handleSubmit}>
+            <div
+              className='todo-input-text'
               style={{
-                height: 30,
-                marginLeft: 120,
-                display: "flex",
-              }}
-              placeholder='Add your Todo here....'
-              value={text}
-              onChange={(e) => {
-                ///during change in text feild that needs to be registered in text state
-                setText(e.target.value);
-              }}
-            />
-            <input
-              type='text'
+                display: "flexbox",
+                justifyContent: "center",
+              }}>
+              <input
+                type='text'
+                required
+                style={{
+                  height: 30,
+                  marginLeft: 120,
+                  display: "flex",
+                }}
+                placeholder='Add your Todo here....'
+                value={text}
+                onChange={(e) => {
+                  ///during change in text feild that needs to be registered in text state
+                  setText(e.target.value);
+                }}
+              />
+              <input
+                type='text'
+                required
+                style={{
+                  marginTop: 5,
+                  height: 30,
+                  marginLeft: 120,
+                }}
+                placeholder='Add your Category here....'
+                value={category}
+                onChange={(e) => {
+                  ///during change in category feild that needs to be registered in category state
+                  setCategory(e.target.value);
+                }}
+              />
+            </div>
+            <button
+              type='submit'
+              className='btn'
               style={{
-                marginTop: 5,
-                height: 30,
-                marginLeft: 120,
-              }}
-              placeholder='Add your Category here....'
-              value={category}
-              onChange={(e) => {
-                ///during change in category feild that needs to be registered in category state
-                setCategory(e.target.value);
-              }}
-            />
-          </div>
-
-          <button
-            className='btn'
-            style={{
-              backgroundColor: "#008CBA",
-              blockSize: 35,
-              marginTop: 10,
-              marginLeft: 150,
-              width: 100,
-              paddingLeft: 10,
-              paddingRight: 10,
-              borderRadius: 10,
-            }}
-            // finally calling the on click function during submit
-            onClick={handleSubmit}>
-            Add
-          </button>
+                backgroundColor: "#008CBA",
+                blockSize: 35,
+                marginTop: 10,
+                marginLeft: 150,
+                width: 100,
+                paddingLeft: 10,
+                paddingRight: 10,
+                borderRadius: 10,
+              }}>
+              Add
+            </button>
+          </form>
         </div>
       </div>
-      <Todo1 List={ItemList}></Todo1>
+      <Todo1 items={ItemList} />
     </>
   );
 };
